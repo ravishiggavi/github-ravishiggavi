@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OAuth Redirect</title>
+</head>
+<body>
+    <h1>Auth Redirect Page</h1>
+    <p id="authCode">Waiting for auth code...</p>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const authCode = params.get("auth_code");
+        if (authCode) {
+            document.getElementById("authCode").innerText = "Auth Code: " + authCode;
+            console.log("Auth Code:", authCode);
+            alert("Auth Code: " + authCode);
+        }
+    </script>
+</body>
+</html>
