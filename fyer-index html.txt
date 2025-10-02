@@ -15,6 +15,11 @@
             console.log("Auth Code:", authCode);
             alert("Auth Code: " + authCode);
         }
+        else
+        {
+            alert("Auth Code: No Generated " );
+        }
     </script>
 </body>
+
 </html>
