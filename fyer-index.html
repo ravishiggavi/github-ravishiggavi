@@ -29,16 +29,16 @@
 
             const input = `${client_id}:${secret_key}`;
             
-            console.log(" input inputinput input ", input);
-
             const data = new TextEncoder().encode("Hello World");
             const hashBuffer = await crypto.subtle.digest("SHA-256", data);
-            document.getElementById("statusDiv").innerText = "hashBuffer: " + hashBuffer;
+            //document.getElementById("statusDiv").innerText = "hashBuffer: " + hashBuffer;
+            alert( hashBuffer);
         }
 
     </script>
 </body>
 </html>
+
 
 
 
