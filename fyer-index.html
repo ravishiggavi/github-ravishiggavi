@@ -28,8 +28,8 @@
         }
 
         
-
-        const data = new TextEncoder().encode("hello world");
+        const input = `${app_id}:${app_secret}`;
+        const data = new TextEncoder().encode(input);
         const hashBuffer = await crypto.subtle.digest("SHA-256", data);
         
         document.getElementById("authCode").innerText = hashBuffer;
@@ -37,6 +37,7 @@
     </script>
 </body>
 </html>
+
 
 
 
