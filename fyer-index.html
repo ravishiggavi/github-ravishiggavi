@@ -48,6 +48,7 @@
     const secret_key = "0DIVX8YW6V"
     const response_type = "code"
     const grant_type = "authorization_code"  
+    const TOKEN_URL = "https://api-t1.fyers.in/api/v3/validate-authcode";
 
     if (authCode) {
         document.getElementById("authCode").innerText = "Auth Code: " + authCode;
@@ -70,8 +71,8 @@
 
       const payload = {
         grant_type: "authorization_code",
-        appId: FYERS_APP_ID,
-        secret_key: FYERS_SECRET_ID,
+        appId: client_id,
+        secret_key: secret_key,
         redirect_uri: REDIRECT_URI,
         code: authCode
       };
@@ -101,8 +102,4 @@
   </script>
 </body>
 </html>
-
-
-
-////////////////////////////
 
