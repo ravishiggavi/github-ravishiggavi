@@ -35,10 +35,27 @@
         //const hashArray = Array.from(new Uint8Array(hashBuffer));
         //const hashHex = hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
         console.log(" hashHex hashHex hashHex >>>>>>>", data);
+
+        function generateAppIdHash(client_id, secret_key) {
+          const input = `${client_id}:${secret_key}`;
+          const encoder = new TextEncoder();
+          const data = encoder.encode(input);
+          return crypto.subtle.digest("SHA-256", data)
+            .then(hashBuffer => {
+              const hashArray = Array.from(new Uint8Array(hashBuffer));
+              const hashHex = hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
+              return hashHex;
+            });
+        }
+
+        generateAppIdHash("your_app_id", "your_app_secret").then(hash => {
+          console.log("AppIdHash:", hash);
+        });
         
     </script>
 </body>
 </html>
+
 
 
 
