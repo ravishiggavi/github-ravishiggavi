@@ -30,30 +30,16 @@
             const input = `${client_id}:${secret_key}`;
             
             console.log(" input inputinput input ", input);
+
+            const data = new TextEncoder().encode("KMUD9J1EAX-100:0DIVX8YW6V");
+            const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+            document.getElementById("statusDiv").innerText = "hashBuffer: " + hashBuffer;
         }
 
-     
-        async function generateAppIdHash(app_id, app_secret) {
-          // Step 1: Combine app_id and app_secret
-          const input = `${app_id}:${app_secret}`;
-        
-          // Step 2: Encode string as Uint8Array
-          const encoder = new TextEncoder();
-          const data = encoder.encode(input);
-        
-          // Step 3: Generate SHA-256 hash (returns ArrayBuffer)
-          const hashBuffer = await crypto.subtle.digest("SHA-256", data);
-        
-          // Step 4: Convert ArrayBuffer to hex string
-          const hashArray = Array.from(new Uint8Array(hashBuffer));
-          const hashHex = hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
-        
-          return hashHex;
-        }
-        
     </script>
 </body>
 </html>
+
 
 
 
