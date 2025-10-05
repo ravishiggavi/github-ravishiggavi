@@ -1,25 +1,107 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>OAuth Redirect</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fyers Authentication</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fafafa;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    .box {
+      background: white;
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      max-width: 400px;
+      text-align: center;
+    }
+    code {
+      background: #eee;
+      padding: 4px 6px;
+      border-radius: 4px;
+    }
+  </style>
 </head>
 <body>
-    <h1>Auth Redirect Page</h1>
-    <p id="authCode">Waiting for auth code...</p>
+  <div class="box">
+    <h2>Fyers Authentication</h2>
+    <div id="status">Processing...</div>
+    <pre id="output"></pre>
+  </div>
 
-    <script>
-        const params = new URLSearchParams(window.location.search);
-        const authCode = params.get("auth_code");
-        if (authCode) {
-            document.getElementById("authCode").innerText = "Auth Code: " + authCode;
-            console.log("Auth Code:", authCode);
-            alert("Auth Code: " + authCode);
+  <script>
+
+    const params = new URLSearchParams(window.location.search);
+    const authCode = params.get("auth_code");
+    if (authCode) {
+        document.getElementById("authCode").innerText = "Auth Code: " + authCode;
+        console.log("Auth Code:", authCode);
+        alert("Auth Code: " + authCode);
+    }
+    else
+    {
+        alert("Auth Code: No Generated " );
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    const authCode = params.get("auth_code");
+    const output = document.getElementById("output");
+    const statusDiv = document.getElementById("status");
+
+    const FYERS_APP_ID = "YOUR_APP_ID";  // replace with your actual
+    const FYERS_SECRET_ID = "YOUR_SECRET_ID"; // replace with your actual
+    const REDIRECT_URI = "https://YOUR_GITHUB_USERNAME.github.io/redirect/"; // same as registered in Fyers
+    const TOKEN_URL = "https://api.fyers.in/api/v2/token";
+
+    async function exchangeToken() {
+      if (!authCode) {
+        statusDiv.innerText = "No auth_code found in URL!";
+        return;
+      }
+
+      statusDiv.innerText = "Exchanging auth code for access token...";
+
+      const payload = {
+        grant_type: "authorization_code",
+        appId: FYERS_APP_ID,
+        secret_key: FYERS_SECRET_ID,
+        redirect_uri: REDIRECT_URI,
+        code: authCode
+      };
+
+      try {
+        const res = await fetch(TOKEN_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+
+        const data = await res.json();
+        output.innerText = JSON.stringify(data, null, 2);
+
+        if (data.access_token) {
+          statusDiv.innerHTML = "✅ Token generated successfully!";
+        } else {
+          statusDiv.innerHTML = "❌ Failed to generate token";
         }
-        else
-        {
-            alert("Auth Code: No Generated " );
-        }
-    </script>
+      } catch (err) {
+        console.error(err);
+        statusDiv.innerText = "Error occurred: " + err;
+      }
+    }
+
+    exchangeToken();
+  </script>
 </body>
-
 </html>
+
+
+
+////////////////////////////
