@@ -25,8 +25,11 @@
             alert("Auth Code: " + authCode);
             //const hash = await getAppIdHash(client_id, secret_key);
             //alert("appIdHash: " + appIdHash);
-           const appIdHash = await generateAppIdHash(client_id, secret_key);
-            alert(appIdHash);
+           //const appIdHash = await generateAppIdHash(client_id, secret_key);
+
+            const input = `${app_id}:${app_secret}`;
+            
+            alert(input);
         }
 
      
@@ -51,6 +54,7 @@
     </script>
 </body>
 </html>
+
 
 
 
