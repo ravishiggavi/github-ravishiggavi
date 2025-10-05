@@ -22,9 +22,9 @@
         if (authCode) {
             document.getElementById("authCode").innerText = "Auth Code: " + authCode;
         
-                generateAppIdHash("your_app_id", "your_app_secret").then(hash => {
+            generateAppIdHash(client_id, secret_key).then(hash => {
               console.log("AppIdHash:", hash);
-            document.getElementById("statusDiv").innerText = hash;
+              document.getElementById("statusDiv").innerText = hash;
             });
         
         }
@@ -46,6 +46,7 @@
     </script>
 </body>
 </html>
+
 
 
 
