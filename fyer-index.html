@@ -16,18 +16,27 @@
     const grant_type = "authorization_code";  
     const REDIRECT_URI="https://ravishiggavi.github.io/github-ravishiggavi/fyer-index.html";
     const TOKEN_URL = "https://api-t1.fyers.in/api/v3/validate-authcode";
-        
-        if (authCode) {
-            document.getElementById("authCode").innerText = "Auth Code: " + authCode;
-            console.log("Auth Code:", authCode);
-            alert("Auth Code: " + authCode);
-        }
 
-    
+    statusDiv.innerText = "Generating appIdHash...";
+    const appIdHash = await sha256(`${FYERS_APP_ID}:${FYERS_SECRET_ID}`);
+        
+    if (authCode) {
+        document.getElementById("authCode").innerText = "Auth Code: " + authCode;
+        console.log("Auth Code:", authCode);
+        alert("Auth Code: " + authCode);
+    }
+
+    async function sha256(str) {
+      const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(str));
+      return Array.from(new Uint8Array(buf))
+        .map(b => b.toString(16).padStart(2, "0"))
+        .join("");
+    }
         
     </script>
 </body>
 </html>
+
 
 
 
