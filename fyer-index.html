@@ -23,12 +23,12 @@
         document.getElementById("authCode").innerText = "Auth Code: " + authCode;
         console.log("Auth Code:", authCode);
         alert("Auth Code: " + authCode);
-        const hash = await getAppIdHash(client_id, secret_key);
+        //const hash = await getAppIdHash(client_id, secret_key);
         alert("appIdHash: " + appIdHash);
     }
 
         
-    async function getAppIdHash(app_id, app_secret) {
+    function getAppIdHash(app_id, app_secret) {
         alert("client_id: " + client_id);
         alert("secret_key: " + secret_key);
       const text = `${client_id}:${secret_key}`;
@@ -45,6 +45,7 @@
     </script>
 </body>
 </html>
+
 
 
 
