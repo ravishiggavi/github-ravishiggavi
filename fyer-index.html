@@ -33,8 +33,10 @@
               statusDiv.innerText = "Generating appIdHash...";
       const appIdHash = await sha256(`${FYERS_APP_ID}:${FYERS_SECRET_ID}`);
       console.log("AppIdHash:", appIdHash);
+           alert("AppIdHash: " + appIdHash);
         
     </script>
 </body>
 </html>
+
 
