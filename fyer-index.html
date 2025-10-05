@@ -60,53 +60,10 @@
         alert("Auth Code: No Generated " );
     }
 
-    
-    async function exchangeToken() {
-      if (!authCode) {
-        statusDiv.innerText = "No auth_code found in URL!";
-        return;
-      }
-
-      statusDiv.innerText = "Exchanging auth code for access token...";
-
-      const payload = {
-        grant_type: "authorization_code",
-        appId: client_id,
-        secret_key: secret_key,
-        redirect_uri: REDIRECT_URI,
-        code: authCode
-      };
-
-      try {
-        const res = await fetch(TOKEN_URL, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-         data-raw '{
-          "grant_type":"authorization_code",  
-          "appIdHash":client_id,
-          "code":authCode
-        }
-          body: JSON.stringify(payload)
-        });
-
-        const data = await res.json();
-        output.innerText = JSON.stringify(data, null, 2);
-
-        if (data.access_token) {
-          statusDiv.innerHTML = "✅ Token generated successfully!";
-        } else {
-          statusDiv.innerHTML = "❌ Failed to generate token";
-        }
-      } catch (err) {
-        console.error(err);
-        statusDiv.innerText = "Error occurred: " + err;
-      }
-    }
-
-    exchangeToken();
   </script>
 </body>
 </html>
+
 
 
 
