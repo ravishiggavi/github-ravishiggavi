@@ -28,7 +28,7 @@
         }
 
         
-        const input = `${app_id}:${app_secret}`;
+        const input = `${client_id}:${secret_key}`;
         const data = new TextEncoder().encode(input);
         const hashBuffer = await crypto.subtle.digest("SHA-256", data);
         
@@ -37,6 +37,7 @@
     </script>
 </body>
 </html>
+
 
 
 
