@@ -27,15 +27,36 @@
             //alert("appIdHash: " + appIdHash);
         }
 
+     
+        async function generateAppIdHash(app_id, app_secret) {
+          // Step 1: Combine app_id and app_secret
+          const input = `${app_id}:${app_secret}`;
         
-        const data = new TextEncoder().encode(api_id + app_secret );
-        const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+          // Step 2: Encode string as Uint8Array
+          const encoder = new TextEncoder();
+          const data = encoder.encode(input);
         
-        document.getElementById("authCode").innerText = hashBuffer;
+          // Step 3: Generate SHA-256 hash (returns ArrayBuffer)
+          const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+        
+          // Step 4: Convert ArrayBuffer to hex string
+          const hashArray = Array.from(new Uint8Array(hashBuffer));
+          const hashHex = hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
+        
+          return hashHex;
+        }
+
+        (async () => {
+  const appIdHash = await generateAppIdHash(client_id, secret_key);
+  document.getElementById("statusDiv").innerText = "appIdHash: " + appIdHash;
+  console.log("AppIdHash:", appIdHash);
+            
+})();
         
     </script>
 </body>
 </html>
+
 
 
 
