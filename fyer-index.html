@@ -27,12 +27,13 @@
             //alert("appIdHash: " + appIdHash);
            //const appIdHash = await generateAppIdHash(client_id, secret_key);
 
-            const input = `${client_id}:${secret_key}`;
+            //const input = `${client_id}:${secret_key}`;
             
             const data = new TextEncoder().encode("Hello World");
             const hashBuffer = await crypto.subtle.digest("SHA-256", data);
             const hashArray = Array.from(new Uint8Array(hashBuffer));
             const hashHex = hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
+            
             console.log(hashHex);
             alert( hashBuffer);
             document.getElementById("statusDiv").innerText = "hashBuffer: " + hashBuffer;
@@ -42,6 +43,7 @@
     </script>
 </body>
 </html>
+
 
 
 
