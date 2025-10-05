@@ -27,20 +27,17 @@
             //alert("appIdHash: " + appIdHash);
         }
 
-        document.getElementById("authCode").innerText = getAppIdHash(client_id,secret_key);
         
-        function getAppIdHash(app_id, app_secret) {
 
-                        alert("Auth Code: " + app_id);
-            alert("Auth Code: " + app_secret);
-
-
-          return "passing....";
-        }
+        const data = new TextEncoder().encode("hello world");
+        const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+        
+        document.getElementById("authCode").innerText = hashBuffer;
         
     </script>
 </body>
 </html>
+
 
 
 
