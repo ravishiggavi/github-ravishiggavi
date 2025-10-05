@@ -8,27 +8,29 @@
     <p id="authCode">Waiting for auth code...</p>
 
     <script>
-    const params = new URLSearchParams(window.location.search);
-    const authCode = params.get("auth_code");
-    const client_id = "KMUD9J1EAX-100";
-    const secret_key = "0DIVX8YW6V";
-    const response_type = "code";
-    const grant_type = "authorization_code";  
-    const REDIRECT_URI="https://ravishiggavi.github.io/github-ravishiggavi/fyer-index.html";
-    const TOKEN_URL = "https://api-t1.fyers.in/api/v3/validate-authcode";
+        const params = new URLSearchParams(window.location.search);
+        const authCode = params.get("auth_code");
+        const client_id = "KMUD9J1EAX-100";
+        const secret_key = "0DIVX8YW6V";
+        const response_type = "code";
+        const grant_type = "authorization_code";  
+        const REDIRECT_URI="https://ravishiggavi.github.io/github-ravishiggavi/fyer-index.html";
+        const TOKEN_URL = "https://api-t1.fyers.in/api/v3/validate-authcode";
 
-    statusDiv.innerText = "Generating appIdHash...";
+        statusDiv.innerText = "Generating appIdHash...";
         
-    if (authCode) {
-        document.getElementById("authCode").innerText = "Auth Code: " + authCode;
-        console.log("Auth Code:", authCode);
-        alert("Auth Code: " + authCode);
-        //const hash = await getAppIdHash(client_id, secret_key);
-        //alert("appIdHash: " + appIdHash);
-    }
+        if (authCode) {
+            document.getElementById("authCode").innerText = "Auth Code: " + authCode;
+            console.log("Auth Code:", authCode);
+            alert("Auth Code: " + authCode);
+            //const hash = await getAppIdHash(client_id, secret_key);
+            //alert("appIdHash: " + appIdHash);
+        }
+        
     </script>
 </body>
 </html>
+
 
 
 
