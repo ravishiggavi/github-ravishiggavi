@@ -38,8 +38,17 @@
 
   <script>
 
+
     const params = new URLSearchParams(window.location.search);
     const authCode = params.get("auth_code");
+    const output = document.getElementById("output");
+    const statusDiv = document.getElementById("status");
+
+    const client_id = "KMUD9J1EAX-100"
+    const secret_key = "0DIVX8YW6V"
+    const response_type = "code"
+    const grant_type = "authorization_code"  
+
     if (authCode) {
         document.getElementById("authCode").innerText = "Auth Code: " + authCode;
         console.log("Auth Code:", authCode);
@@ -50,16 +59,7 @@
         alert("Auth Code: No Generated " );
     }
 
-    const params = new URLSearchParams(window.location.search);
-    const authCode = params.get("auth_code");
-    const output = document.getElementById("output");
-    const statusDiv = document.getElementById("status");
-
-    const FYERS_APP_ID = "YOUR_APP_ID";  // replace with your actual
-    const FYERS_SECRET_ID = "YOUR_SECRET_ID"; // replace with your actual
-    const REDIRECT_URI = "https://YOUR_GITHUB_USERNAME.github.io/redirect/"; // same as registered in Fyers
-    const TOKEN_URL = "https://api.fyers.in/api/v2/token";
-
+    
     async function exchangeToken() {
       if (!authCode) {
         statusDiv.innerText = "No auth_code found in URL!";
@@ -105,3 +105,4 @@
 
 
 ////////////////////////////
+
