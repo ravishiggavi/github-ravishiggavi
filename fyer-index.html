@@ -31,13 +31,18 @@
             
             const data = new TextEncoder().encode("Hello World");
             const hashBuffer = await crypto.subtle.digest("SHA-256", data);
-            //document.getElementById("statusDiv").innerText = "hashBuffer: " + hashBuffer;
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            const hashHex = hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
+            console.log(hashHex);
             alert( hashBuffer);
+            document.getElementById("statusDiv").innerText = "hashBuffer: " + hashBuffer;
+            
         }
 
     </script>
 </body>
 </html>
+
 
 
 
