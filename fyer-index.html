@@ -31,20 +31,14 @@
     function getAppIdHash(app_id, app_secret) {
         alert("client_id: " + client_id);
         alert("secret_key: " + secret_key);
-      const text = `${client_id}:${secret_key}`;
-      const encoder = new TextEncoder();
-      const data = encoder.encode(text);
-        alert("data: " + data);
 
-        const hashBuffer = await crypto.subtle.digest("SHA-256", data);
-      const hashArray = Array.from(new Uint8Array(hashBuffer));
-      const hashHex = hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
       return hashHex;
     }
         
     </script>
 </body>
 </html>
+
 
 
 
