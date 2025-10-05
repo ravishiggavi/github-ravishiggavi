@@ -30,6 +30,10 @@
         document.getElementById("authCode").innerText = getAppIdHash(client_id,secret_key)
         
         function getAppIdHash(app_id, app_secret) {
+
+                        alert("Auth Code: " + app_id);
+            alert("Auth Code: " + app_secret);
+
           const text = `${app_id}:${app_secret}`;
           const encoder = new TextEncoder();
           const data = encoder.encode(text);
@@ -42,6 +46,7 @@
     </script>
 </body>
 </html>
+
 
 
 
