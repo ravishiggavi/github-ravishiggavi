@@ -28,9 +28,7 @@
         }
 
         
-        const input = `${client_id}:${secret_key}`;
-        alert(input);
-        const data = new TextEncoder().encode(input);
+        const data = new TextEncoder().encode(api_id + app_secret );
         const hashBuffer = await crypto.subtle.digest("SHA-256", data);
         
         document.getElementById("authCode").innerText = hashBuffer;
@@ -38,6 +36,7 @@
     </script>
 </body>
 </html>
+
 
 
 
