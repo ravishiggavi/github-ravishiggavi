@@ -50,11 +50,13 @@
 
         generateAppIdHash("your_app_id", "your_app_secret").then(hash => {
           console.log("AppIdHash:", hash);
+        document.getElementById("statusDiv").innerText = hash;
         });
         
     </script>
 </body>
 </html>
+
 
 
 
