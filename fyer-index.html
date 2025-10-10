@@ -8,6 +8,8 @@
     <h1>Auth Redirect Page</h1>
     <p id="authCode">Waiting for auth code...</p>
     <p id="statusDiv">Waiting for appIdHash...</p>
+    <p id="tokenDiv">Waiting fortokenDiv...</p>
+    <p id="refreshtokenDiv">Waiting for refreshtokenDiv</p>
 
     <script>
         const params = new URLSearchParams(window.location.search);
@@ -19,13 +21,47 @@
         const REDIRECT_URI="https://ravishiggavi.github.io/github-ravishiggavi/fyer-index.html";
         const TOKEN_URL = "https://api-t1.fyers.in/api/v3/validate-authcode";
 
-       
         if (authCode) {
             document.getElementById("authCode").innerText = "Auth Code: " + authCode;
-        
             generateAppIdHash(client_id, secret_key).then(hash => {
               console.log("AppIdHash:", hash);
               document.getElementById("statusDiv").innerText = hash;
+              const AppIdHash = hash;
+
+              const payload = {
+                                grant_type: "authorization_code",
+                                appIdHash: AppIdHash,
+                                code: authCode
+                              };
+                //
+                // STEP 3: Make POST request
+              fetch(TOKEN_URL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+              })
+                .then(res => res.json())
+                .then(data => {
+                  console.log("Fyers Token Response:", data);
+                  if (data.access_token) {
+                    statusDiv.innerHTML = `
+                      ✅ Token generated successfully! <br><br>
+                      <b>Access Token:</b><br>
+                      <textarea cols="60" rows="5">${data.access_token}</textarea>
+                    `;
+                  } else {
+                    statusDiv.innerHTML = `
+                      ⚠️ Failed to generate token.<br>
+                      <pre>${JSON.stringify(data, null, 2)}</pre>
+                    `;
+                  }
+                })
+                .catch(err => {
+                  console.error(err);
+                  statusDiv.innerHTML = "❌ Error: " + err.message;
+                });
+                //
+            
             });
         
         }
@@ -47,6 +83,7 @@
     </script>
 </body>
 </html>
+
 
 
 
