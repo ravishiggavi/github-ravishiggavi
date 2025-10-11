@@ -51,12 +51,14 @@
                       <b>Refresh Access Token:</b><br>
                       <textarea cols="60" rows="5">${data.refresh_token}</textarea>
                     `;
+                      <BR>
                     refreshtokenDiv.innerHTML = `
                       ✅ Refresh Token generated successfully! <br><br>
                       <b>Refresh Access Token:</b><br>
                       <textarea cols="60" rows="5">${data.refresh_token}</textarea>
                     `;
-                  } else {
+                  } 
+                  else {
                     statusDiv.innerHTML = `
                       ⚠️ Failed to generate token.<br>
                       <pre>${JSON.stringify(data, null, 2)}</pre>
@@ -90,6 +92,7 @@
     </script>
 </body>
 </html>
+
 
 
 
