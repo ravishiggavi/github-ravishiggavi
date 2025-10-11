@@ -7,7 +7,7 @@
 <body>
     <h1>Auth Redirect Page</h1>
     <p id="authCode">Waiting for auth code...</p>
-    <p id="statusDiv">Waiting for appIdHash...</p>
+    <p id="appIdHashDiv">Waiting for appIdHash...</p>
     <p id="tokenDiv">Waiting fortokenDiv...</p>
     <p id="refreshtokenDiv">Waiting for refreshtokenDiv</p>
 
@@ -25,7 +25,7 @@
             document.getElementById("authCode").innerText = "Auth Code: " + authCode;
             generateAppIdHash(client_id, secret_key).then(hash => {
               console.log("AppIdHash:", hash);
-              document.getElementById("statusDiv").innerText = hash;
+              document.getElementById("appIdHashDiv").innerText = hash;
               const AppIdHash = hash;
 
               const payload = {
@@ -48,8 +48,6 @@
                       ✅ Token generated successfully! <br><br>
                       <b>Access Token:</b><br>
                       <textarea cols="60" rows="5">${data.access_token}</textarea>
-                      <b>Refresh Access Token:</b><br>
-                      <textarea cols="60" rows="5">${data.refresh_token}</textarea>
                     `;
                       <BR>
                     refreshtokenDiv.innerHTML = `
@@ -92,6 +90,7 @@
     </script>
 </body>
 </html>
+
 
 
 
